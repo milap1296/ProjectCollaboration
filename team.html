@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Team</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body onload=onLoadFunction()>
+
+<script src="js/team.js"></script>
+    <div id = "Header">
+        Collaboration
+    </div>
+    <div class="topnav">
+        <a id="home" href="index.html">Home</a>
+        <a class="active" id="team" href="#">Team</a>
+    </div>
+    <div class="Wrapper" style="height: 50%">
+    <div class="TaskDetails" id="UserDetails" style="width:90%">
+
+    <!--<div class="container">-->
+        <!--<img src="img/default_profile.png" alt="Avatar" class="image"/>-->
+        <!--<div class = "edit_del">-->
+            <!--<img src="img/edit.png" class = "img"/>-->
+            <!--<img src="img/cancel.png" class = "img"/>-->
+        <!--</div>-->
+        <!--<div class="middle">-->
+            <!--<p class="Details">Role</p>-->
+            <!--<p class="Details">Age: 21</p>-->
+            <!--<p class="Details">ID</p>-->
+        <!--</div>-->
+        <!--<p class = "Name">ABC</p>-->
+    <!--</div>-->
+
+    <!--<div class="container">-->
+        <!--<img src="img/default_profile.png" alt="Avatar" class="image"/>-->
+        <!--<div class = "edit_del">-->
+            <!--<img src="img/edit.png" class = "img"/>-->
+            <!--<img src="img/cancel.png" class = "img"/>-->
+        <!--</div>-->
+        <!--<div class="middle">-->
+            <!--<p class="Details">Role</p>-->
+            <!--<p class="Details">Age: 21</p>-->
+            <!--<p class="Details">ID</p>-->
+        <!--</div>-->
+        <!--<p class = "Name">XYZ</p>-->
+    <!--</div>-->
+    </div>
+
+    <div class="AddUser">
+    <p onclick="refreshEntries();return false" style="cursor:pointer;display: block;background: #DEE0E1;text-align: center">Add New User</p>
+    <form onsubmit="submitUser();return false;">
+        Name:<br>
+        <input type="text" name="Name" value="" id="name" required /><br>
+        Role:<br>
+        <input type="text" name="Role" value="" id="role" required /><br>
+        Age:<br>
+        <input type="text" name="Age" value="" id="age" required /><br><br>
+        <div>
+            <input type="submit" class="sub_button" id="add_button"></input>
+            <button class="edit_button" id="edit_button">Edit</button>
+            <button class="can_button" id="can_button">Cancel</button>
+        </div>
+    </form>
+    </div>
+    </div>
+    <!--<div class = "ProjDetails">-->
+    <!--<p>Tasks</p>-->
+    <!--<div class="HorizontalPartition">-->
+    <!--<div class = "ProjSection">-->
+        <!--<p class = "TaskHeading">"Todo"</p>-->
+
+        <!--<div class="Todo">-->
+        <!--<div class="InsideSection">-->
+            <!--<p class="Title_List">Task 1</p>-->
+            <!--<p class="Title_List">Task 2</p>-->
+            <!--<p class="Title_List">Task 3</p>-->
+            <!--<p class="Title_List">Task 4</p>-->
+        <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class = "ProjSection">-->
+        <!--<p class = "TaskHeading">"Doing"</p>-->
+
+        <!--<div class="Todo">-->
+            <!--<div class="InsideSection">-->
+                <!--<p class="Title_List">Task 1</p>-->
+                <!--<p class="Title_List">Task 2</p>-->
+                <!--<p class="Title_List">Task 3</p>-->
+                <!--<p class="Title_List">Task 4</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class = "ProjSection" style="border-right: none">-->
+        <!--<p class = "TaskHeading">"Done"</p>-->
+
+        <!--<div class="Todo">-->
+            <!--<div class="InsideSection">-->
+                <!--<p class="Title_List">Task 1</p>-->
+                <!--<p class="Title_List">Task 2</p>-->
+                <!--<p class="Title_List">Task 3</p>-->
+                <!--<p class="Title_List">Task 4</p>-->
+                <!--<p class="Title_List">Task 5</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+</body>
+</html>
