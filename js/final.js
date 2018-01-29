@@ -821,3 +821,7 @@
     };
     octopus.init();
 })();
+
+
+// itemNode.getElementsByClassName("Title_List")[0].addEventListener('click',function (e){onclickTask(this,item["id"]);},false);
+//399

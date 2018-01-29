@@ -1,9 +1,9 @@
 // (function() {
     let taskId = 108;
-
-    var taskClick = false;
+    let taskClick = false;
     let delVar = 0;
     let selectedId = 0;
+
     const TaskList = {
         101: {
             "UserName": "User1",
@@ -72,64 +72,78 @@
     };
     const UserCardList = {
         1: {
-            UserName: "User1",
-            UserId: 1,
+            "Name": "User1",
+            "Role": "Developer",
+            "img": "img/default_profile.png",
+            "age":"age",
+            "id": 1,
         },
         2: {
-            UserName: "User2",
-            UserId: 2,
+            "Name": "User2",
+            "Role": "Developer",
+            "img": "img/default_profile.png",
+            "age":"age",
+            "id": 2,
         },
         3: {
-            UserName: "User3",
-            UserId: 3,
+            "Name": "User3",
+            "Role": "Developer",
+            "img": "img/default_profile.png",
+            "age":"age",
+            "id": 3,
         },
         4: {
-            UserName: "User4",
-            UserId: 4,
+            "Name": "User4",
+            "Role": "Developer",
+            "img": "img/default_profile.png",
+            "age":"age",
+            "id": 4,
         },
         5: {
-            UserName: "User5",
-            UserId: 5,
+            "Name": "User5",
+            "Role": "Developer",
+            "img": "img/default_profile.png",
+            "age":"age",
+            "id": 5,
         },
     };
+    const TASKID = document.getElementById("task_id");
+    const DUEDATE = document.getElementById("due_d");
+    const ASSIGNEE = document.getElementById("assign_d");
+    const TODO = document.getElementById("todo");
+    const DOING = document.getElementById("doing");
+    const DONE = document.getElementById("done");
+    const TITLE = document.getElementById("title_d");
 
-    function onLoadFunction() {
+function onLoadFunction() {
         showAllUsers();
         showAllTasksList(TaskList);
-    }
-
-    window.onLoadFunction = onLoadFunction;
-
-    function hideCancelButton(){
-        let cancelBtn = document.getElementById('del_button');
-        cancelBtn.style.cssText = 'visibility:hidden';
     }
 
     function displayEventHandler(id) {
         console.log("display");
         console.log(id);
 
-        hideCancelButton();
 
         let taskName = TaskList[id].TaskName;
         let currStatus = TaskList[id].Status;
         let userName = TaskList[id].UserName;
         let due = TaskList[id].DueDate;
 
-        document.getElementById("task_id").value = id;
-        document.getElementById("title_d").value = taskName;
-        document.getElementById("due_d").value = due;
-        document.getElementById("assign_d").value = userName;
-        console.log(document.getElementById("task_id").value);
+        TASKID.value = id;
+        TITLE.value = taskName;
+        DUEDATE.value = due;
+        ASSIGNEE.value = userName;
+        console.log(TASKID.value);
 
         if (TaskList[id].Status == 0) {
-            document.getElementById("todo").checked = true;
+            TODO.checked = true;
         }
         else if (TaskList[id].Status == 2) {
-            document.getElementById("done").checked = true;
+            DONE.checked = true;
         }
         else {
-            document.getElementById("doing").checked = true;
+            DOING.checked = true;
         }
 
 
@@ -176,23 +190,18 @@
 
     }
 
-// let ptags = document.getElementsByClassName("Title_List");
-// // console.log(ptags);
-// for(let i in ptags){
-//     ptags[i].onclick = displayEventHandler;
-// }
     function showAllUsers() {
         let UserListNode = document.getElementById("TaskDetails");
         Object.keys(UserCardList).forEach((itemId) => {
             const itemNode = document.createElement("div");
             const item = UserCardList[itemId];
 
-            itemNode.setAttribute("id", item["UserId"]);
+            itemNode.setAttribute("id", item["id"]);
             itemNode.setAttribute("class", "Card");
 
             itemNode.innerHTML = `
         
-                    <p class="Title_Card">${item["UserName"]}</p>
+                    <p class="Title_Card">${item["Name"]}</p>
                     <div class="Todo heading_Cards" onclick="{onClickHeading()}" id="Todo" ondrop="drop()" ondragover="allowDrop()">Todo<img src="img/plus.png" class = "plus">
                     </div>
                     <div class="Doing heading_Cards" onclick="{onClickHeading()}" id="Doing" ondrop="drop()" ondragover="allowDrop()">Doing<img src="img/plus.png" class = "plus">
@@ -209,28 +218,25 @@
     function onClickHeading() {
         // console.log(event.target.className);
         // console.log(event.target.parentNode.className);
-
         let currStat = event.target;
         let className = currStat.className;
         if(className == "plus")
         {
+            refreshEntries();
             document.getElementById("")
-            document.getElementById("assign_d").value = UserCardList[currStat.parentNode.parentNode.id].UserName;
+            ASSIGNEE.value = UserCardList[currStat.parentNode.parentNode.id].Name;
 
-            document.getElementById("todo").checked = true;
+            TODO.checked = true;
             if(currStat.parentNode.className == "Doing heading_Cards")
             {
-                document.getElementById("doing").checked = true;
+                DOING.checked = true;
             }
             else if(currStat.parentNode.className == "Done heading_Cards")
             {
-                document.getElementById("done").checked = true;
+                DONE.checked = true;
             }
 
             taskClick = false;
-            let submitBtn = document.getElementById('add_button');
-            submitBtn.setAttribute("onclick",`submitUser("${true}")`);
-
             // console.log(UserCardList[currStat.parentNode.parentNode.id]);
         }
         else if(className == "Todo heading_Cards" || className == "Doing heading_Cards" || className == "Done heading_Cards")
@@ -260,7 +266,7 @@
         if (UserCardList[uid] != undefined) {
             deletionEventHandler(tid);
             TaskList[tid] = {
-                "UserName": UserCardList[uid].UserName,
+                "UserName": UserCardList[uid].Name,
                 "id": tid,
                 "TaskName": tname,
                 "Status": stat,
@@ -327,58 +333,65 @@
         lastId++;
     }
 
-    function submitUser(flag) {
+    function submitTask() {
         console.log(taskClick);
         if (taskClick) {
             alert("Already Submitted");
             return;
         }
-        let uname = document.getElementById("assign_d").value;
-        let tname = document.getElementById("title_d").value;
+        let uname = ASSIGNEE.value;
+        let tname = TITLE.value;
         let status;
-        if (document.getElementById("todo").checked) {
+        if (TODO.checked) {
             status = 0;
         }
-        else if (document.getElementById("done").checked) {
+        else if (DONE.checked) {
             status = 2;
         }
-        else if (document.getElementById("doing").checked) {
+        else if (DOING.checked) {
             status = 1;
         }
-
-        let dued = document.getElementById("due_d").value;
-        if (flag) {
-            TaskList[taskId] = {
-                "UserName": uname,
-                "id": taskId,
-                "TaskName": tname,
-                "Status": status,
-                "Desc": "",
-                "UserId": uname.charAt(uname.length - 1),
-                "DueDate": dued,
-            }
-
-            addTask(TaskList[taskId]);
-            taskId++;
-        }
-        else {
-            let id = document.getElementById("task_id").value;
-            TaskList[id] = {
-                "UserName": uname,
-                "id": id,
-                "TaskName": tname,
-                "Status": status,
-                "Desc": "",
-                "UserId": uname.charAt(uname.length - 1),
-                "DueDate": dued,
-            }
-
-            addTask(TaskList[id]);
+        let dued = DUEDATE.value;
+        TaskList[taskId] = {
+            "UserName": uname,
+            "id": taskId,
+            "TaskName": tname,
+            "Status": status,
+            "Desc": "",
+            "UserId": uname.charAt(uname.length - 1),
+            "DueDate": dued,
         }
 
+        addTask(TaskList[taskId]);
+        taskId++;
 
     }
 
+    function onclickTask(id){
+
+        console.log(id);
+        let captured = event.target.className;
+        if(captured == "imgDel")
+        {
+            deletionEventHandler(id);
+        }
+
+        else if(captured == "imgEdit")
+        {
+            console.log("here her here here ");
+            editEventHandler(id);
+        }
+
+        else if(captured == "Title_List")
+        {
+            displayEventHandler(id);
+        }
+
+        else
+        {
+            return;
+        }
+    }
     function addTask(item) {
         const itemNode = document.createElement("p");
         itemNode.setAttribute("id", item["id"]);
@@ -397,74 +410,79 @@
 
         itemNode.innerHTML = `<p onclick={onclickTask("${item["id"]}")} class = "Title_List" >${item["TaskName"]}
 <img src="img/edit.png" class = "imgEdit"><img src="img/cancel.png" class = "imgDel"></p>`;
-
+        // itemNode.getElementsByClassName("Title_List")[0].addEventListener('click',onclickTask(item["id"]),false);
+        // itemNode.getElementsByClassName("Title_List")[0].on
         TaskListNode.appendChild(itemNode);
 
         refreshEntries();
     }
 
-    function onclickTask(id){
 
-        console.log(id);
-        let captured = event.target.className;
-        if(captured == "imgDel")
-        {
-            deletionEventHandler(id);
-        }
-
-        else if(captured == "imgEdit")
-        {
-            editEventHandler(id);
-        }
-
-        else if(captured == "Title_List")
-        {
-            displayEventHandler(id);
-        }
-
-        else
-        {
-            return;
-        }
-    }
 
     function editEventHandler(id) {
         let item = TaskList[id];
         console.log(item);
         displayEventHandler(id);
         // deletionEventHandler(id);
-
-        let cancelBtn = document.getElementById('del_button');
-        cancelBtn.style.cssText = 'visibility:visible';
-        cancelBtn.setAttribute("onclick",`onCancel()`);
-
+        debugger;
         let submitBtn = document.getElementById('add_button');
-        submitBtn.setAttribute("onclick",`onSubmit("${id}")`);
+        submitBtn.style.cssText = 'display:none';
+
+        let editBtn = document.getElementById('edit_button');
+        editBtn.style.cssText = 'visibility:visible';
+        editBtn.setAttribute("onclick",`changeDetails(${id});return false;`);
+
+        let canBtn = document.getElementById('can_button');
+        canBtn.style.cssText = 'visibility:visible';
+        canBtn.setAttribute("onclick",`refreshEntries();return false;`);
 
     }
-
-    function onSubmit(id){
+    function changeDetails(id){
+        console.log("come here");
         deletionEventHandler(id);
-        taskClick = false;
-        submitUser(false);
+        let status;
+        if (TODO.checked) {
+            status = 0;
+        }
+        else if (DONE.checked) {
+            status = 2;
+        }
+        else if (DOING.checked) {
+            status = 1;
+        };
+        let uname = ASSIGNEE.value;
+        TaskList[id] = {
+            "UserName": uname,
+            "id": id,
+            "TaskName": TITLE.value,
+            "Status": status,
+            "Desc": "",
+            "UserId": uname.charAt(uname.length - 1),
+            "DueDate": DUEDATE.value,
+        };
+        addTask(TaskList[id]);
 
-        hideCancelButton();
-
-        return false;
-    }
-
-    function onCancel(){
         refreshEntries();
-        hideCancelButton();
-    }
+}
 
     function refreshEntries() {
         console.log("aaaaaa");
-        document.getElementById("assign_d").value = "";
-        document.getElementById("title_d").value = "";
-        document.getElementById("due_d").value = "";
-        document.getElementById("todo").checked = false;
-        document.getElementById("doing").checked = false;
-        document.getElementById("done").checked = false;
+        ASSIGNEE.value = "";
+        TITLE.value = "";
+        DUEDATE.value = "";
+        TODO.checked = false;
+        DOING.checked = false;
+        DONE.checked = false;
+
+        let submitBtn = document.getElementById('add_button');
+        submitBtn.style.cssText = 'display:block';
+
+        let editBtn = document.getElementById('edit_button');
+        editBtn.style.cssText = 'visibility:hidden';
+
+        let canBtn = document.getElementById('can_button');
+        canBtn.style.cssText = 'visibility:hidden';
     }
-// })()
+
+//     onLoadFunction();
+// })();
