@@ -1,34 +1,40 @@
-let ids=3;
+let ids=1;
+if(localStorage.getItem("ids"))
+{
+    ids = localStorage.getItem("ids");
+}
+else
+{
+    localStorage.setItem("ids",ids);
+}
 let UserList = {
-    1: {
-        "Name": "ABC",
-        "Role": "Developer",
-        "img": "img/default_profile.png",
-        "age":"age",
-        "id":1
-    },
-    2: {
-        "Name": "XYZ",
-        "Role": "Senior Developer",
-        "img": "img/default_profile.png",
-        "age":"age",
-        "id":2
-    }
 };
 let UserListNode = null;
 function onLoadFunction() {
     UserListNode = document.getElementById("UserDetails");
-    showUsersList(UserList);
+
+    let retrievedList = localStorage.getItem('UserList');
+    if(retrievedList != null){
+        UserList = JSON.parse(retrievedList);
+        showUsersList(UserList);
+    }
+    else
+    {
+        localStorage.setItem('UserList',JSON.stringify(UserList));
+    }
 }
 
 function showUsersList(UserList) {
-    Object.keys(UserList).forEach((itemId) => {
-        const itemNode = document.createElement("div");
-    const item = UserList[itemId];
     console.log(UserList);
-    // debugger;
-    itemNode.setAttribute("id", item["id"]);
-    itemNode.setAttribute("class", "container");
+    Object.keys(UserList).forEach((itemId) => {
+
+        console.log(itemId);
+        const itemNode = document.createElement("div");
+        const item = UserList[itemId];
+        console.log(UserList);
+        // debugger;
+        itemNode.setAttribute("id", item["id"]);
+        itemNode.setAttribute("class", "container");
 
         itemNode.innerHTML = `
            <img src="${item["img"]}" alt="${item["Name"]}" class="image"/>
@@ -66,6 +72,7 @@ function editUser(id){
 }
 
 function changeDetails(id){
+    console.log(document.getElementById("name").value);
     deleteUser(id);
     UserList[id] = {
         "Name": document.getElementById("name").value,
@@ -74,6 +81,7 @@ function changeDetails(id){
         "age": document.getElementById("age").value,
         "id":id,
     };
+    addToLocalStorage(id,UserList[id]);
     addUser(UserList[id]);
 
     refreshEntries();
@@ -81,8 +89,10 @@ function changeDetails(id){
 
 function deleteUser(id){
     console.log(id + " in UserDelete");
-    delete UserList[id];
+    // delete UserList[id];
+    removeFromLocalStorage(id);
     UserListNode.removeChild(document.getElementById(id));
+    //refreshEntries();
 }
 
 function submitUser() {
@@ -100,7 +110,9 @@ function submitUser() {
     };
 
     addUser(UserList[ids]);
+    addToLocalStorage(ids,UserList[ids]);
     ids++;
+    localStorage.setItem("ids",ids);
     // showUsersList(UserList);
     refreshEntries();
 }
@@ -141,4 +153,16 @@ function addUser(item) {
         <p class = "Name">${item["Name"]}</p>
 `;
     UserListNode.appendChild(itemNode);
+}
+
+function removeFromLocalStorage(id) {
+    let retrievedList = JSON.parse(localStorage.getItem('UserList'));
+    delete retrievedList[id];
+    localStorage.setItem('UserList',JSON.stringify(retrievedList));
+}
+
+function addToLocalStorage(id,item) {
+    let retrievedList = JSON.parse(localStorage.getItem('UserList'));
+    retrievedList[id] = item;
+    localStorage.setItem('UserList',JSON.stringify(retrievedList));
 }

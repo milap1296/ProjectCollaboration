@@ -1,111 +1,18 @@
 // (function() {
-    let taskId = 108;
+    let taskId = 101;
+    if(localStorage.taskId)
+        taskId = localStorage.taskId;
+    else
+        localStorage.taskId = taskId;
     let taskClick = false;
     let delVar = 0;
     let selectedId = 0;
 
-    const TaskList = {
-        101: {
-            "UserName": "User1",
-            "id": 101,
-            "TaskName": "Task1",
-            "Status": 0,
-            "Desc": "",
-            "UserId": 1,
-            "DueDate": "2020-01-01",
-        },
-        102: {
-            "UserName": "User2",
-            "id": 102,
-            "TaskName": "Task2",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        },
-        103: {
-            "UserName": "User2",
-            "id": 103,
-            "TaskName": "Task3",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        },
-        104: {
-            "UserName": "User2",
-            "id": 104,
-            "TaskName": "Task4",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        },
-        105: {
-            "UserName": "User2",
-            "id": 105,
-            "TaskName": "Task5",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        },
-        106: {
-            "UserName": "User2",
-            "id": 106,
-            "TaskName": "Task6",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        },
-        107: {
-            "UserName": "User2",
-            "id": 107,
-            "TaskName": "Task7",
-            "Status": 1,
-            "Desc": "",
-            "UserId": 2,
-            "DueDate": "2025-01-01",
-        }
-
+    let TaskList = {
     };
-    const UserCardList = {
-        1: {
-            "Name": "User1",
-            "Role": "Developer",
-            "img": "img/default_profile.png",
-            "age":"age",
-            "id": 1,
-        },
-        2: {
-            "Name": "User2",
-            "Role": "Developer",
-            "img": "img/default_profile.png",
-            "age":"age",
-            "id": 2,
-        },
-        3: {
-            "Name": "User3",
-            "Role": "Developer",
-            "img": "img/default_profile.png",
-            "age":"age",
-            "id": 3,
-        },
-        4: {
-            "Name": "User4",
-            "Role": "Developer",
-            "img": "img/default_profile.png",
-            "age":"age",
-            "id": 4,
-        },
-        5: {
-            "Name": "User5",
-            "Role": "Developer",
-            "img": "img/default_profile.png",
-            "age":"age",
-            "id": 5,
-        },
+
+    let UserCardList = {
+
     };
     const TASKID = document.getElementById("task_id");
     const DUEDATE = document.getElementById("due_d");
@@ -114,10 +21,26 @@
     const DOING = document.getElementById("doing");
     const DONE = document.getElementById("done");
     const TITLE = document.getElementById("title_d");
+    const TASKS = localStorage.getItem('TaskList');
+    const USERS = localStorage.getItem("UserList");
 
-function onLoadFunction() {
-        showAllUsers();
-        showAllTasksList(TaskList);
+    function onLoadFunction() {
+            let x = TASKS;
+            if(USERS)
+            {
+                UserCardList = JSON.parse(USERS);
+            }
+            if(x != null){
+                TaskList = JSON.parse(TASKS);
+                console.log("abc");
+            }
+            else
+            {
+                localStorage.setItem('TaskList',JSON.stringify(TaskList));
+                console.log("xyz");
+            }
+            showAllUsers();
+            showAllTasksList(TaskList);
     }
 
     function displayEventHandler(id) {
@@ -184,8 +107,8 @@ function onLoadFunction() {
         let TaskListNode = CardSel.childNodes[2 * currStat + 3];
         console.log(TaskListNode.className);
         console.log(document.getElementById(id));
-        delete TaskList[id];
-
+        // delete TaskList[id];
+        removeFromLocalStorage(id);
         TaskListNode.removeChild(document.getElementById(id));
 
     }
@@ -277,6 +200,7 @@ function onLoadFunction() {
 
             // displayEventHandler(tid);
             taskClick = false;
+            addToLocalStorage(tid,TaskList[tid]);
             addTask(TaskList[tid]);
         }
     }
@@ -352,18 +276,18 @@ function onLoadFunction() {
             status = 1;
         }
         let dued = DUEDATE.value;
-        TaskList[taskId] = {
+        TaskList[localStorage.taskId] = {
             "UserName": uname,
-            "id": taskId,
+            "id": localStorage.taskId,
             "TaskName": tname,
             "Status": status,
             "Desc": "",
             "UserId": uname.charAt(uname.length - 1),
             "DueDate": dued,
         }
-
-        addTask(TaskList[taskId]);
-        taskId++;
+        addToLocalStorage(localStorage.taskId,TaskList[taskId]);
+        addTask(TaskList[localStorage.taskId]);
+        localStorage.taskId++;
 
     }
 
@@ -374,6 +298,7 @@ function onLoadFunction() {
         if(captured == "imgDel")
         {
             deletionEventHandler(id);
+            refreshEntries();
         }
 
         else if(captured == "imgEdit")
@@ -392,6 +317,7 @@ function onLoadFunction() {
             return;
         }
     }
+
     function addTask(item) {
         const itemNode = document.createElement("p");
         itemNode.setAttribute("id", item["id"]);
@@ -403,8 +329,7 @@ function onLoadFunction() {
         let currStat = item["Status"];
 
         let CardSel = document.getElementById(uid);
-        let TaskListNode = null;
-        TaskListNode = CardSel.childNodes[2 * currStat + 3];
+        let TaskListNode = CardSel.childNodes[2 * currStat + 3];
         console.log(item["UserName"]);
         // console.log(TaskListNode.className);
 
@@ -417,14 +342,12 @@ function onLoadFunction() {
         refreshEntries();
     }
 
-
-
     function editEventHandler(id) {
         let item = TaskList[id];
         console.log(item);
         displayEventHandler(id);
         // deletionEventHandler(id);
-        debugger;
+        // debugger;
         let submitBtn = document.getElementById('add_button');
         submitBtn.style.cssText = 'display:none';
 
@@ -437,6 +360,7 @@ function onLoadFunction() {
         canBtn.setAttribute("onclick",`refreshEntries();return false;`);
 
     }
+
     function changeDetails(id){
         console.log("come here");
         deletionEventHandler(id);
@@ -460,6 +384,7 @@ function onLoadFunction() {
             "UserId": uname.charAt(uname.length - 1),
             "DueDate": DUEDATE.value,
         };
+        addToLocalStorage(id,TaskList[id]);
         addTask(TaskList[id]);
 
         refreshEntries();
@@ -484,5 +409,20 @@ function onLoadFunction() {
         canBtn.style.cssText = 'visibility:hidden';
     }
 
+    function removeFromLocalStorage(id) {
+        let retrievedList = JSON.parse(TASKS);
+        delete retrievedList[id];
+        localStorage.setItem('TaskList',JSON.stringify(retrievedList));
+    }
+
+    function addToLocalStorage(id,item) {
+        let retrievedList = JSON.parse(TASKS);
+        retrievedList[id] = item;
+        localStorage.setItem('TaskList',JSON.stringify(retrievedList));
+}
 //     onLoadFunction();
 // })();
+
+
+// itemNode.getElementsByClassName("Title_List")[0].addEventListener('click',function (e){onclickTask(this,item["id"]);},false);
+//399

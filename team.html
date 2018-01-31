@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="css/main.css">
 
 </head>
-<body onload=onLoadFunction()>
+<body>
 
-<script src="js/team.js"></script>
     <div id = "Header">
         Collaboration
     </div>
     <div class="topnav">
-        <a id="home" href="index.html">Home</a>
+        <a id="home" href="backup.html">Home</a>
         <a class="active" id="team" href="#">Team</a>
     </div>
     <div class="Wrapper" style="height: 50%">
@@ -52,7 +51,7 @@
 
     <div class="AddUser">
     <p onclick="refreshEntries();return false" style="cursor:pointer;display: block;background: #DEE0E1;text-align: center">Add New User</p>
-    <form onsubmit="submitUser();return false;">
+    <form id="form1">
         Name:<br>
         <input type="text" name="Name" value="" id="name" required /><br>
         Role:<br>
@@ -111,6 +110,7 @@
     <!--</div>-->
     <!--</div>-->
     <!--</div>-->
+    <script src="js/team_final.js"></script>
 
 
 </body>
