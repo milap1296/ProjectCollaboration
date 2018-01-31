@@ -300,6 +300,7 @@
         init: function() {
             this.onLoadFunction();
         },
+
         onLoadFunction: function(){
 
             let x = TASKS;
@@ -320,6 +321,7 @@
             this.showAllUsers();
             this.showAllTasksList(model.TaskList);
         },
+
         displayEventHandler: function(id) {
             console.log("display");
             console.log(id);
@@ -349,6 +351,7 @@
             // debugger;
             SUBBTN.style.cssText = "display:none";
         },
+
         showAllUsers: function () {
             let UserListNode = document.getElementById("TaskDetails");
             Object.keys(model.UserCardList).forEach((itemId) => {
@@ -389,12 +392,14 @@
                 UserListNode.appendChild(itemNode);
             });
         },
+
         showAllTasksList: function (TaskList) {
             Object.keys(TaskList).forEach((itemId) => {
                 octopus.addTask(TaskList[itemId]);
                 console.log("inShowAll");
             });
         },
+
         onclickTask: function (id) {
 
             console.log(id+" andar aaya");
