@@ -1,5 +1,8 @@
 (function(){
 
+    const NAME = document.getElementById("name");
+    const ROLE = document.getElementById("role");
+    const AGE = document.getElementById("age");
     let model = {
         UserList:{
             // 1: {
@@ -20,14 +23,15 @@
             // model.init();
             view.init();
             // octopus.submitUser();
+            document.getElementById("addNewUser").onclick = octopus.refreshEntries;
             document.getElementById("form1").onsubmit = octopus.submitUser;
         },
 
         submitUser: function () {
             console.log("idhar bi aa");
-            let name = document.getElementById("name").value;
-            let role = document.getElementById("role").value;
-            let age = document.getElementById("age").value;
+            let name = NAME.value;
+            let role = ROLE.value;
+            let age = AGE.value;
 
             model.UserList[model.ids] = {
                 "Name": name,
@@ -85,9 +89,9 @@
         },
         editUser: function (id) {
             console.log(id);
-            document.getElementById("name").value = model.UserList[id].Name;
-            document.getElementById("role").value = model.UserList[id].Role;
-            document.getElementById("age").value = model.UserList[id].age;
+            NAME.value = model.UserList[id].Name;
+            ROLE.value = model.UserList[id].Role;
+            AGE.value = model.UserList[id].age;
 
             let submitBtn = document.getElementById('add_button');
             submitBtn.style.cssText = 'display:none';
@@ -107,13 +111,13 @@
             octopus.changeDetails(model.editId);
         },
         changeDetails: function (id) {
-            console.log(document.getElementById("name").value);
+            console.log(NAME.value);
             octopus.deleteUser(id);
             model.UserList[id] = {
-                "Name": document.getElementById("name").value,
-                "Role": document.getElementById("role").value,
+                "Name": NAME.value,
+                "Role": ROLE.value,
                 "img": "img/default_profile.png",
-                "age": document.getElementById("age").value,
+                "age": AGE.value,
                 "id":id,
             };
             octopus.addToLocalStorage(id,model.UserList[id]);
@@ -125,9 +129,9 @@
         },
         refreshEntries:function () {
 
-            document.getElementById("name").value = "";
-            document.getElementById("role").value = "";
-            document.getElementById("age").value = "";
+            NAME.value = "";
+            ROLE.value = "";
+            AGE.value = "";
 
             let submitBtn = document.getElementById('add_button');
             submitBtn.style.cssText = 'display:block';

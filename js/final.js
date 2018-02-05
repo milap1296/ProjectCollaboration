@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
     const SUBBTN = document.getElementById("add_button");
     const TASKID = document.getElementById("task_id");
@@ -10,38 +10,51 @@
     const TITLE = document.getElementById("title_d");
     const TASKS = localStorage.getItem('TaskList');
     const USERS = localStorage.getItem("UserList");
+    const optionTemplate = function (user) {
+        return `<option value="${user.id}">${user.Name}</option>`;
+    }
 
     let model = {
-        taskClick:false,
-        delVar:0,
-        selectedId:0,
-        editId:0,
+        taskClick: false,
+        delVar: 0,
+        selectedId: 0,
+        editId: 0,
         TaskList: {},
         UserCardList: {},
     };
 
-
     let octopus = {
 
-        init: function() {
+        init: function () {
             // model.init();
             view.init();
 
-            document.getElementById("form").addEventListener("submit",function(){
+            document.getElementById("form").addEventListener("submit", function () {
                 octopus.submitTask();
                 // return false;
-            },true);
+            }, true);
 
-            if(!localStorage.taskId)
-            {
+            if (!localStorage.taskId) {
                 localStorage.taskId = 101;
             }
+
+            let selection = document.getElementById("assign_d");
+            let optionsHTML = '';
+
+            for (itemId in model.UserCardList) {
+                optionsHTML += optionTemplate(model.UserCardList[itemId]);
+            }
+
+            selection.innerHTML = optionsHTML;
         },
 
         deletionEventHandler: function (id) {
             console.log("deletion");
             console.log(id);
             let item = model.TaskList[id];
+            // debugger;
+            // console.log(event.target.parentNode.parentNode.id);
+            // console.log(event.target.parentNode.parentNode.className);
             let uid = item['UserId'];
             let currStat = item['Status'];
             console.log(currStat);
@@ -57,44 +70,39 @@
         onClickHeading: function () {
             let currStat = event.target;
             let className = currStat.className;
-            if(className == "plus")
-            {
+            if (className == "plus") {
                 octopus.refreshEntries();
-                document.getElementById("")
-                document.getElementById("assign_d").value = model.UserCardList[currStat.parentNode.parentNode.id].Name;
+                ASSIGNEE.value = currStat.parentNode.parentNode.id;
 
-                document.getElementById("todo").checked = true;
-                if(currStat.parentNode.className == "Doing heading_Cards")
-                {
-                    document.getElementById("doing").checked = true;
+                TODO.checked = true;
+                if (currStat.parentNode.className == "Doing heading_Cards") {
+                    DOING.checked = true;
                 }
-                else if(currStat.parentNode.className == "Done heading_Cards")
-                {
-                    document.getElementById("done").checked = true;
+                else if (currStat.parentNode.className == "Done heading_Cards") {
+                    DONE.checked = true;
                 }
 
                 model.taskClick = false;
 
                 // console.log(UserCardList[currStat.parentNode.parentNode.id]);
             }
-            else if(className == "Todo heading_Cards" || className == "Doing heading_Cards" || className == "Done heading_Cards")
-            {
+            else if (className == "Todo heading_Cards" || className == "Doing heading_Cards" || className == "Done heading_Cards") {
 
             }
-            else
-            {
+            else {
                 return;
             }
         },
 
-        submitTask: function(){
+        submitTask: function () {
             console.log("submitTask");
             console.log(model.taskClick);
             if (model.taskClick) {
                 alert("Already Submitted");
                 return;
             }
-            let uname = ASSIGNEE.value;
+            debugger;
+            let uid = ASSIGNEE.value;
             let tname = TITLE.value;
             let status;
             if (TODO.checked) {
@@ -108,15 +116,15 @@
             }
             let dued = DUEDATE.value;
             model.TaskList[localStorage.taskId] = {
-                "UserName": uname,
+                "UserName": model.UserCardList[uid].Name,
                 "id": localStorage.taskId,
                 "TaskName": tname,
                 "Status": status,
                 "Desc": "",
-                "UserId": uname.charAt(uname.length - 1),
+                "UserId": uid,
                 "DueDate": dued,
             }
-            octopus.addToLocalStorage(localStorage.taskId,model.TaskList[localStorage.taskId]);
+            octopus.addToLocalStorage(localStorage.taskId, model.TaskList[localStorage.taskId]);
             octopus.addTask(model.TaskList[localStorage.taskId]);
             // localStorage.taskId++;
             localStorage.taskId++;
@@ -124,7 +132,7 @@
             // return false;
         },
 
-        drop : function () {
+        drop: function () {
             console.log("dr0p");
             let data = event.dataTransfer.getData("text");
             // console.log(event.target.id);
@@ -153,16 +161,16 @@
 
                 // displayEventHandler(tid);
                 model.taskClick = false;
-                octopus.addToLocalStorage(tid,model.TaskList[tid]);
+                octopus.addToLocalStorage(tid, model.TaskList[tid]);
                 octopus.addTask(model.TaskList[tid]);
             }
         },
 
-        allowDrop : function () {
+        allowDrop: function () {
             event.preventDefault();
         },
 
-        drag : function () {
+        drag: function () {
             // debugger;
             let id = event.target.id;
             event.dataTransfer.setData("text", id);
@@ -172,7 +180,7 @@
             // view.displayEventHandler(id);
         },
 
-        addTask:function (item) {
+        addTask: function (item) {
             console.log("in Add Task function");
             const itemNode = document.createElement("p");
             itemNode.setAttribute("id", item["id"]);
@@ -194,9 +202,9 @@
             itemNode.innerHTML = `<p class = "Title_List">${item["TaskName"]}
 <img src="img/edit.png" class = "imgEdit"><img src="img/cancel.png" class = "imgDel"></p>`;
 
-            itemNode.getElementsByClassName("Title_List")[0].addEventListener("click",function(){
+            itemNode.getElementsByClassName("Title_List")[0].addEventListener("click", function () {
                 view.onclickTask(item["id"]);
-            },true);
+            }, true);
 
             TaskListNode.appendChild(itemNode);
             console.log(itemNode);
@@ -219,8 +227,8 @@
             // editBtn.setAttribute("onclick",`changeDetails(${id});return false;`);
             // debugger;
             model.editId = id;
-            editBtn.removeEventListener("click",octopus.myFunction);
-            editBtn.addEventListener("click",octopus.myFunction);
+            editBtn.removeEventListener("click", octopus.myFunction);
+            editBtn.addEventListener("click", octopus.myFunction);
 
             let canBtn = document.getElementById('can_button');
             canBtn.style.cssText = 'visibility:visible';
@@ -228,13 +236,13 @@
 
         },
 
-        myFunction: function(){
+        myFunction: function () {
             octopus.changeDetails(model.editId);
         },
 
-        changeDetails:function (id) {
+        changeDetails: function (id) {
             // debugger;
-            console.log("changeDetails "+id);
+            console.log("changeDetails " + id);
             octopus.deletionEventHandler(id);
 
             let status;
@@ -246,18 +254,19 @@
             }
             else if (DOING.checked) {
                 status = 1;
-            };
-            let uname = ASSIGNEE.value;
+            }
+            ;
+            let uid = ASSIGNEE.value;
             model.TaskList[id] = {
-                "UserName": uname,
+                "UserName": model.UserCardList[uid],
                 "id": id,
                 "TaskName": TITLE.value,
                 "Status": status,
                 "Desc": "",
-                "UserId": uname.charAt(uname.length - 1),
+                "UserId": uid,
                 "DueDate": DUEDATE.value,
             };
-            octopus.addToLocalStorage(id,model.TaskList[id]);
+            octopus.addToLocalStorage(id, model.TaskList[id]);
             octopus.addTask(model.TaskList[id]);
             octopus.refreshEntries();
             event.preventDefault();
@@ -282,39 +291,36 @@
             canBtn.style.cssText = 'visibility:hidden';
         },
 
-        removeFromLocalStorage:function (id) {
+        removeFromLocalStorage: function (id) {
             let retrievedList = JSON.parse(TASKS);
             delete retrievedList[id];
-            localStorage.setItem('TaskList',JSON.stringify(retrievedList));
+            localStorage.setItem('TaskList', JSON.stringify(retrievedList));
         },
 
-        addToLocalStorage: function (id,item) {
+        addToLocalStorage: function (id, item) {
             let retrievedList = JSON.parse(TASKS);
             retrievedList[id] = item;
-            localStorage.setItem('TaskList',JSON.stringify(retrievedList));
+            localStorage.setItem('TaskList', JSON.stringify(retrievedList));
         }
     };
 
-
     let view = {
-        init: function() {
+        init: function () {
             this.onLoadFunction();
         },
 
-        onLoadFunction: function(){
+        onLoadFunction: function () {
 
             let x = TASKS;
-            if(USERS)
-            {
+            if (USERS) {
                 model.UserCardList = JSON.parse(USERS);
             }
-            if(x != null){
+            if (x != null) {
                 model.TaskList = JSON.parse(TASKS);
                 console.log("abc");
             }
-            else
-            {
-                localStorage.setItem('TaskList',JSON.stringify(model.TaskList));
+            else {
+                localStorage.setItem('TaskList', JSON.stringify(model.TaskList));
                 console.log("xyz");
             }
 
@@ -322,19 +328,20 @@
             this.showAllTasksList(model.TaskList);
         },
 
-        displayEventHandler: function(id) {
+        displayEventHandler: function (id) {
             console.log("display");
             console.log(id);
 
             let taskName = model.TaskList[id].TaskName;
             let currStatus = model.TaskList[id].Status;
-            let userName = model.TaskList[id].UserName;
+            debugger;
+            let userName = model.UserCardList[model.TaskList[id].UserId].Name;
             let due = model.TaskList[id].DueDate;
 
             TASKID.value = id;
             TITLE.value = taskName;
             DUEDATE.value = due;
-            ASSIGNEE.value = userName;
+            ASSIGNEE.value = model.TaskList[id].UserId;
 
             if (model.TaskList[id].Status == 0) {
                 TODO.checked = true;
@@ -374,21 +381,25 @@
                     </div>        
         `;
 
-                itemNode.getElementsByClassName("Todo heading_Cards")[0].addEventListener("click",function(){
+                let todoHead = itemNode.getElementsByClassName("Todo heading_Cards")[0];
+                let doingHead = itemNode.getElementsByClassName("Doing heading_Cards")[0];
+                let doneHead = itemNode.getElementsByClassName("Done heading_Cards")[0];
+
+                todoHead.addEventListener("click", function () {
                     octopus.onClickHeading();
-                },true);
-                itemNode.getElementsByClassName("Todo heading_Cards")[0].ondrop = octopus.drop;
-                itemNode.getElementsByClassName("Todo heading_Cards")[0].ondragover = octopus.allowDrop;
-                itemNode.getElementsByClassName("Doing heading_Cards")[0].addEventListener("click",function(){
+                }, true);
+                todoHead.ondrop = octopus.drop;
+                todoHead.ondragover = octopus.allowDrop;
+                doingHead.addEventListener("click", function () {
                     octopus.onClickHeading();
-                },true);
-                itemNode.getElementsByClassName("Doing heading_Cards")[0].ondrop = octopus.drop;
-                itemNode.getElementsByClassName("Doing heading_Cards")[0].ondragover = octopus.allowDrop;
-                itemNode.getElementsByClassName("Done heading_Cards")[0].addEventListener("click",function(){
+                }, true);
+                doingHead.ondrop = octopus.drop;
+                doingHead.ondragover = octopus.allowDrop;
+                doneHead.addEventListener("click", function () {
                     octopus.onClickHeading();
-                },true);
-                itemNode.getElementsByClassName("Done heading_Cards")[0].ondrop = octopus.drop;
-                itemNode.getElementsByClassName("Done heading_Cards")[0].ondragover = octopus.allowDrop;
+                }, true);
+                doneHead.ondrop = octopus.drop;
+                doneHead.ondragover = octopus.allowDrop;
                 UserListNode.appendChild(itemNode);
             });
         },
@@ -402,33 +413,31 @@
 
         onclickTask: function (id) {
 
-            console.log(id+" andar aaya");
+            console.log(id + " andar aaya");
             let captured = event.target.className;
-            if(captured == "imgDel")
-            {
+            if (captured == "imgDel") {
                 octopus.deletionEventHandler(id);
                 octopus.refreshEntries();
             }
 
-            else if(captured == "imgEdit")
-            {
+            else if (captured == "imgEdit") {
                 // debugger
-                console.log(id+" in");
+                console.log(id + " in");
                 octopus.editEventHandler(id);
-                console.log(id+" out")
+                console.log(id + " out")
             }
 
-            else if(captured == "Title_List")
-            {
+            else if (captured == "Title_List") {
+                octopus.refreshEntries();
                 view.displayEventHandler(id);
             }
 
-            else
-            {
+            else {
                 return;
             }
         }
     };
+
     octopus.init();
 })();
 

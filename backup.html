@@ -15,103 +15,17 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<!--[if lte IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
-
-<!-- Add your site or application content here -->
-<div id = "Header">
+<div id="Header">
     <text>Collaboration</text>
 </div>
 <div class="topnav">
     <a class="active" id="home" href="#">Home</a>
-    <a id="team"href="team.html">Team</a>
+    <a id="team" href="team.html">Team</a>
 </div>
-<div class = "Wrapper">
-    <div class = "TaskDetails" id="TaskDetails">
-        <!--<div class="Card" id ="1">-->
-        <!--<p class="Title_Card">User 1</p>-->
-        <!--<div class="Todo"> <text class= "heading_Cards">Todo</text>-->
-        <!--</div>-->
-        <!--<div class="Doing"> <text class= "heading_Cards">Doing</text>-->
-        <!--</div>-->
-        <!--<div class="Done"> <text class= "heading_Cards">Done</text>-->
-        <!--</div>-->
-        <!--<a href="#" class="button" onclick="addNewUser()">Add New</a>-->
-        <!--</div>-->
-        <!--<div class="Card" id ="2">-->
-        <!--<p class="Title_Card">User 2</p>-->
-        <!--<div class="Todo"> <text class= "heading_Cards">Todo</text>-->
-        <!--</div>-->
-        <!--<div class="Doing"> <text class= "heading_Cards">Doing</text>-->
-        <!--</div>-->
-        <!--<div class="Done"> <text class= "heading_Cards">Done</text>-->
-        <!--</div>-->
-        <!--<a href="#" class="button" onclick="addNewUser()">Add New</a>-->
-        <!--</div>-->
-        <!--<div class="Card" id ="3">-->
-        <!--<p class="Title_Card">User 3</p>-->
-        <!--<div class="Todo"> <text class= "heading_Cards">Todo</text>-->
-        <!--</div>-->
-        <!--<div class="Doing"> <text class= "heading_Cards">Doing</text>-->
-        <!--</div>-->
-        <!--<div class="Done"> <text class= "heading_Cards">Done</text>-->
-        <!--</div>-->
-        <!--<a href="#" class="button" onclick="addNewUser()">Add New</a>-->
-        <!--</div>-->
-        <!--<div class="Card" id ="4">-->
-        <!--<p class="Title_Card">User 4</p>-->
-        <!--<div class="Todo"> <text class= "heading_Cards">Todo</text>-->
-        <!--</div>-->
-        <!--<div class="Doing"> <text class= "heading_Cards">Doing</text>-->
-        <!--</div>-->
-        <!--<div class="Done"> <text class= "heading_Cards">Done</text>-->
-        <!--</div>-->
-        <!--<a href="#" class="button" onclick="addNewUser()">Add New</a>-->
-        <!--</div>-->
-        <!--<div class="Card" id="6">-->
-        <!--<p class="Title_Card">User6</p>-->
-        <!--<div class="Todo heading_Cards">Todo-->
-        <!--</div>-->
-        <!--<div class="Doing heading_Cards">Doing-->
-        <!--</div>-->
-        <!--<div class="Done heading_Cards">Done-->
-        <!--</div>-->
-        <!--<a href="#" class="button" onclick="addNewUser()">Add New</a>-->
-        <!--</div>-->
-    </div>
-
-    <!--<div id = "TaskDescription">-->
-    <!--<div class="Card_Part2" id = "Card5">-->
-    <!--<textarea class="Title_Card">Task Name</textarea>-->
-    <!--<div style="margin-top: 5px">-->
-    <!--<text>Due Date</text>-->
-    <!--<form>-->
-    <!--<input type="date" style="font-size: small">-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--<div style="margin-top: 10px">-->
-    <!--<text>Status</text>-->
-    <!--<form style="background: white">-->
-    <!--<input type="radio" name="Status" value="0">Todo<br>-->
-    <!--<input type="radio" name="Status" value="1">Doing<br>-->
-    <!--<input type="radio" name="Status" value="2">Done-->
-    <!--</form>-->
-    <!--</div>-->
-
-    <!--<div>-->
-    <!--<textarea class="Title_List" style="cursor: text; width:96.5%">Description about the particular task</textarea>-->
-    <!--</div>-->
-    <!--<div class="footer">-->
-    <!--<button class="edit_button">Edit</button>-->
-    <!--<button class="add_button">Submit</button>-->
-    <!--<button class="del_button" id="del_button" onclick="deletionEventHandler()">Del</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <div id = "TaskDescription">
-        <div class="Card_Part2" id = "Card5">
+<div class="Wrapper">
+    <div class="TaskDetails" id="TaskDetails"></div>
+    <div id="TaskDescription">
+        <div class="Card_Part2" id="Card5">
             <form id="form">
                 Task Name: <br>
                 <input type="text" class="Title_Card" id="title_d" required></input>
@@ -129,11 +43,7 @@
                     <input type="radio" name="Status" value="2" id="done">Done
                 </div>
                 <select id="assign_d" required>
-                    <option>User1</option>
-                    <option>User2</option>
-                    <option>User3</option>
-                    <option>User4</option>
-                    <option>User5</option>
+
                 </select>
                 <div class="footer">
                     <input type="submit" class="sub_button" id="add_button"></input>
@@ -143,14 +53,9 @@
             </form>
         </div>
     </div>
-
 </div>
-
 
 <script src="js/final.js"></script>
 
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
 </html>
