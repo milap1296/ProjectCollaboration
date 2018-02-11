@@ -85,7 +85,7 @@
             // delete UserList[id];
             octopus.removeFromLocalStorage(id);
             model.UserListNode.removeChild(document.getElementById(id));
-            octopus.refreshEntries();
+            // octopus.refreshEntries();
         },
         editUser: function (id) {
             console.log(id);
