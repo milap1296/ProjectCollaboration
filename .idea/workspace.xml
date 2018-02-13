@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b1def3b-085d-43ac-b190-b020ef1bc33c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/img/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/img/avatar.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/img/plus.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/src/cancel.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/src/default_profile.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/src/edit.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my-app/src/teamController.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/my-app/public/index.html" afterPath="$PROJECT_DIR$/my-app/public/index.html" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.js" afterPath="$PROJECT_DIR$/my-app/src/App.js" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/index.css" afterPath="$PROJECT_DIR$/my-app/src/index.css" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/teamController.js" afterPath="$PROJECT_DIR$/my-app/src/teamController.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="2010">
+              <caret line="134" column="18" lean-forward="true" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="18" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -34,13 +32,13 @@
       <file leaf-file-name="teamController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/teamController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="99" column="10" lean-forward="true" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
+            <state relative-caret-position="696">
+              <caret line="220" column="4" lean-forward="false" selection-start-line="220" selection-start-column="4" selection-end-line="220" selection-end-column="4" />
               <folding>
-                <marker date="1518443166415" expanded="false" signature="3062:4233" ph="{...}" />
-                <marker date="1518443166415" expanded="false" signature="5194:5911" ph="{...}" />
-                <marker date="1518443166415" expanded="false" signature="5939:5991" ph="{...}" />
-                <marker date="1518443166415" expanded="false" signature="6026:6472" ph="{...}" />
+                <marker date="1518447192442" expanded="false" signature="3062:4233" ph="{...}" />
+                <marker date="1518447192442" expanded="false" signature="5194:5911" ph="{...}" />
+                <marker date="1518447192442" expanded="false" signature="5939:5991" ph="{...}" />
+                <marker date="1518447192442" expanded="false" signature="6026:6472" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -49,18 +47,18 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my-app/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+            <state relative-caret-position="540">
+              <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -84,10 +82,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/my-app/src/index.css" />
         <option value="$PROJECT_DIR$/my-app/src/teamController" />
-        <option value="$PROJECT_DIR$/my-app/src/teamController.js" />
         <option value="$PROJECT_DIR$/my-app/src/App.js" />
+        <option value="$PROJECT_DIR$/my-app/src/teamController.js" />
+        <option value="$PROJECT_DIR$/my-app/src/index.css" />
+        <option value="$PROJECT_DIR$/my-app/public/index.html" />
       </list>
     </option>
   </component>
@@ -281,12 +280,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518420932338</updated>
-      <workItem from="1518420933705" duration="14183000" />
+      <workItem from="1518420933705" duration="14908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14183000" />
+    <option name="totallyTimeSpent" value="14908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -331,22 +330,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/my-app/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -355,26 +338,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/teamController.js">
+    <entry file="file://$PROJECT_DIR$/my-app/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="99" column="10" lean-forward="true" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
+        <state relative-caret-position="2010">
+          <caret line="134" column="18" lean-forward="true" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="18" />
           <folding>
-            <marker date="1518443166415" expanded="false" signature="3062:4233" ph="{...}" />
-            <marker date="1518443166415" expanded="false" signature="5194:5911" ph="{...}" />
-            <marker date="1518443166415" expanded="false" signature="5939:5991" ph="{...}" />
-            <marker date="1518443166415" expanded="false" signature="6026:6472" ph="{...}" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/App.js">
+    <entry file="file://$PROJECT_DIR$/my-app/src/teamController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        <state relative-caret-position="696">
+          <caret line="220" column="4" lean-forward="false" selection-start-line="220" selection-start-column="4" selection-end-line="220" selection-end-column="4" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1518447192442" expanded="false" signature="3062:4233" ph="{...}" />
+            <marker date="1518447192442" expanded="false" signature="5194:5911" ph="{...}" />
+            <marker date="1518447192442" expanded="false" signature="5939:5991" ph="{...}" />
+            <marker date="1518447192442" expanded="false" signature="6026:6472" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
